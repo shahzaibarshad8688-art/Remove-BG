@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Image Background - 100% Free</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* CSS STYLING */
+        :root {
+            --primary-blue: #0066f5;
+            --primary-blue-hover: #0052c7;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: var(--white);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo i {
+            color: var(--text-gray);
+        }
+
+        .logo span strong {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-right: 25px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-login {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .btn-signup {
+            text-decoration: none;
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .btn-signup:hover {
+            background-color: #0f172a;
+        }
+
+        .hero-container {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 10%;
+            gap: 50px;
+        }
+
+        .hero-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-image-wrapper {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 5px solid var(--white);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-heading {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #111827;
+        }
+
+        .hero-heading span {
+            color: var(--primary-blue);
+        }
+
+        .hero-subheading {
+            margin-top: 15px;
+            font-size: 20px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .badge {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 16px;
+        }
+
+        .hero-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .upload-card {
+            background: var(--white);
+            width: 100%;
+            max-width: 450px;
+            min-height: 320px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            border: 2px dashed #cbd5e1;
+            transition: border-color 0.3s;
+        }
+
+        .upload-card.dragover {
+            border-color: var(--primary-blue);
+            background-color: #f0f7ff;
+        }
+
+        .upload-content {
+            text-align: center;
+        }
+
+        .btn-upload {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0, 102, 245, 0.2);
+            transition: all 0.2s;
+        }
+
+        .btn-upload:hover {
+            background-color: var(--primary-blue-hover);
+            transform: translateY(-2px);
+        }
+
+        .drag-text {
+            margin-top: 20px;
+            font-size: 16px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .sub-text {
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .sub-text a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .loader-container {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .result-container img {
+            max-width: 100%;
+            max-height: 180px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), 
+                              linear-gradient(-45deg, #ccc 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #ccc 75%), 
+                              linear-gradient(-45deg, transparent 75%, #ccc 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .btn-download {
+            text-decoration: none;
+            background-color: #10b981;
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-download:hover {
+            background-color: #059669;
+        }
+
+        .btn-reset {
+            margin-top: 10px;
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Footer Styling */
+        .site-footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--white);
+            border-top: 1px solid #e2e8f0;
+            font-size: 14px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .site-footer strong {
+            color: var(--text-dark);
+        }
+
+        .heart-icon {
+            color: #ef4444;
+            animation: beat .3s infinite alternate;
+            display: inline-block;
+        }
+
+        @keyframes beat {
+            to { transform: scale(1.1); }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+            .hero-container {
+                flex-direction: column;
+                padding: 40px 5%;
+                text-align: center;
+            }
+            .hero-left {
+                align-items: center;
+            }
+            .hero-heading {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>remove<strong>bg</strong></span>
+        </div>
+        <nav class="nav-links">
+            <a href="#">Uploads</a>
+            <a href="#">API</a>
+            <a href="#">Pricing</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="#" class="btn-login">Log in</a>
+            <a href="#" class="btn-signup">Sign up</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="hero-container">
+        
+        <!-- Left Side: Content & Image -->
+        <section class="hero-left">
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=500" alt="Sample User" class="hero-img">
+            </div>
+            <h1 class="hero-heading">Remove Image <br><span>Background</span></h1>
+            <p class="hero-subheading">100% Automatically and <span class="badge">Free</span></p>
+        </section>
+
+        <!-- Right Side: Upload Box -->
+        <section class="hero-right">
+            <div class="upload-card" id="drop-zone">
+                <!-- Direct file input (Hidden) -->
+                <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="processImage(this.files[0])">
+                
+                <div class="upload-content" id="upload-prompt">
+                    <!-- Button clicks input file directly -->
+                    <button type="button" class="btn-upload" onclick="document.getElementById('file-input').click()">
+                        Upload Image
+                    </button>
+                    <p class="drag-text">or drop a file,</p>
+                    <p class="sub-text">paste image or <a href="#">URL</a></p>
+                </div>
+
+                <!-- Loader -->
+                <div class="loader-container hidden" id="loader">
+                    <div class="spinner"></div>
+                    <p>Removing background...</p>
+                </div>
+
+                <!-- Result Area -->
+                <div class="result-container hidden" id="result-area">
+                    <img id="output-image" src="" alt="Result">
+                    <a id="download-btn" class="btn-download" download="no-bg-image.png">Download Image</a>
+                    <button type="button" class="btn-reset" onclick="resetUpload()">Upload Another</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        Designed & built with <span class="heart-icon">♥</span> by <strong>SHAHZAIB ARSHAD KHAGGA</strong>
+    </footer>
+
+    <script>
+        // JAVASCRIPT LOGIC
+        const API_KEY = "z1KnVYRyszYBTmbuCDFmnEUN";
+
+        const dropZone = document.getElementById('drop-zone');
+        const uploadPrompt = document.getElementById('upload-prompt');
+        const loader = document.getElementById('loader');
+        const resultArea = document.getElementById('result-area');
+        const outputImage = document.getElementById('output-image');
+        const downloadBtn = document.getElementById('download-btn');
+
+        // Drag and Drop (Support)
+        if (dropZone) {
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('dragover');
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('dragover');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    processImage(files[0]);
+                }
+            });
+        }
+
+        // Image Processing function
+        function processImage(file) {
+            if (!file) return;
+
+            // Show loader, hide upload area
+            uploadPrompt.classList.add('hidden');
+            loader.classList.remove('hidden');
+
+            const formData = new FormData();
+            formData.append('image_file', file);
+            formData.append('size', 'auto');
+
+            // Send to remove.bg API
+            fetch('https://api.remove.bg/v1.0/removebg', {
+                method: 'POST',
+                headers: {
+                    'X-Api-Key': API_KEY
+                },
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('API limit reached or network issue.');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                // Generate download link from result
+                const imageUrl = URL.createObjectURL(blob);
+                
+                loader.classList.add('hidden');
+                resultArea.classList.remove('hidden');
+                
+                outputImage.src = imageUrl;
+                downloadBtn.href = imageUrl;
+            })
+            .catch(error => {
+                alert("Error: " + error.message);
+                resetUpload();
+            });
+        }
+
+        // Reset back to upload prompt
+        function resetUpload() {
+            document.getElementById('file-input').value = '';
+            resultArea.classList.add('hidden');
+            loader.classList.add('hidden');
+            uploadPrompt.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
