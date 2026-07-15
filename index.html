@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remove Image Background - 100% Free</title>
+    
+    <!-- Advanced SEO Meta Tags for Google Search -->
+    <title>Free AI Background Remover | Remove Image Background Online 100% Free</title>
+    <meta name="description" content="Remove image background 100% automatically in 5 seconds with one click. High-quality AI background remover. Free download PNG transparent images.">
+    <meta name="keywords" content="remove bg, background remover, free bg remover, remove image background, AI background remover, transparent background, transparent png maker, change bg">
+    <meta name="author" content="Shahzaib Arshad Khagga">
+    <meta name="robots" content="index, follow">
+    
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    <!-- 
+      GOOGLE ADSENSE CODE PLACEHOLDER
+      Jab aapka AdSense approve ho jayega, toh aapko jo code milega, 
+      use aap niche di gayi line (auto-ads) ke bilkul niche paste karenge.
+    -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
     <style>
         /* CSS STYLING */
         :root {
@@ -16,6 +30,7 @@
             --text-gray: #64748b;
             --bg-light: #f8fafc;
             --white: #ffffff;
+            --accent-green: #10b981;
         }
 
         * {
@@ -40,6 +55,9 @@
             padding: 20px 8%;
             background-color: var(--white);
             border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
@@ -64,6 +82,7 @@
             margin-right: 25px;
             font-weight: 500;
             transition: color 0.2s;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -96,12 +115,12 @@
             background-color: #0f172a;
         }
 
+        /* Hero / Tool Area */
         .hero-container {
             display: flex;
-            flex: 1;
             align-items: center;
             justify-content: space-between;
-            padding: 40px 10%;
+            padding: 50px 10%;
             gap: 50px;
         }
 
@@ -113,8 +132,8 @@
         }
 
         .hero-image-wrapper {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             overflow: hidden;
             margin-bottom: 20px;
@@ -129,7 +148,7 @@
         }
 
         .hero-heading {
-            font-size: 48px;
+            font-size: 46px;
             font-weight: 800;
             line-height: 1.1;
             color: #111827;
@@ -141,7 +160,7 @@
 
         .hero-subheading {
             margin-top: 15px;
-            font-size: 20px;
+            font-size: 18px;
             color: var(--text-gray);
             font-weight: 500;
         }
@@ -151,7 +170,7 @@
             color: var(--white);
             padding: 4px 12px;
             border-radius: 12px;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .hero-right {
@@ -262,7 +281,7 @@
 
         .btn-download {
             text-decoration: none;
-            background-color: #10b981;
+            background-color: var(--accent-green);
             color: var(--white);
             padding: 12px 30px;
             border-radius: 20px;
@@ -283,19 +302,178 @@
             text-decoration: underline;
         }
 
-        .hidden {
-            display: none !important;
+        /* 
+           GOOGLE ADSENSE BANNER PLACEHOLDERS
+           AdSense approval aur earning ke liye ads ki optimized jaghein 
+        */
+        .adsense-placeholder {
+            width: 100%;
+            max-width: 970px;
+            min-height: 90px;
+            background-color: #f1f5f9;
+            border: 1px dashed #cbd5e1;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 14px;
+            border-radius: 8px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* SEO & Educational Content Section */
+        .info-section {
+            background-color: var(--white);
+            padding: 60px 10%;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .info-box h2 {
+            font-size: 28px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .info-box p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .faq-section {
+            margin-top: 40px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 40px;
+        }
+
+        .faq-section h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .faq-item {
+            background-color: var(--bg-light);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .faq-item h3 {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .faq-item p {
+            color: var(--text-gray);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* Popup Modals for Legal Pages */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 650px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--text-dark);
+        }
+
+        .modal-content h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+        }
+
+        .modal-content p, .modal-content ul {
+            color: var(--text-gray);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-content ul {
+            padding-left: 20px;
+        }
+
+        .modal-content ul li {
+            margin-bottom: 8px;
         }
 
         /* Footer Styling */
         .site-footer {
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
             background-color: var(--white);
             border-top: 1px solid #e2e8f0;
             font-size: 14px;
             color: var(--text-gray);
             font-weight: 500;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin: 0 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue-hover);
         }
 
         .site-footer strong {
@@ -309,9 +487,14 @@
         }
 
         @keyframes beat {
-            to { transform: scale(1.1); }
+            to { transform: scale(1.15); }
         }
 
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive Layout adjustments */
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 5%;
@@ -323,12 +506,21 @@
                 flex-direction: column;
                 padding: 40px 5%;
                 text-align: center;
+                gap: 30px;
             }
             .hero-left {
                 align-items: center;
             }
             .hero-heading {
                 font-size: 32px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .adsense-placeholder {
+                min-height: 75px;
+                margin: 20px 5%;
+                width: 90%;
             }
         }
     </style>
@@ -343,8 +535,8 @@
         </div>
         <nav class="nav-links">
             <a href="#">Uploads</a>
-            <a href="#">API</a>
-            <a href="#">Pricing</a>
+            <a onclick="showModal('privacy-modal')">Privacy Policy</a>
+            <a onclick="showModal('contact-modal')">Contact Us</a>
         </nav>
         <div class="auth-buttons">
             <a href="#" class="btn-login">Log in</a>
@@ -352,7 +544,12 @@
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Ad placeholder at the top to increase CTR (Click Through Rate) -->
+    <div class="adsense-placeholder" id="top-ad">
+        <i class="fa-solid fa-rectangle-ad" style="margin-right: 8px;"></i> Advertisement (AdSense Banner Code Will Go Here)
+    </div>
+
+    <!-- Main Tool Container -->
     <main class="hero-container">
         
         <!-- Left Side: Content & Image -->
@@ -367,11 +564,9 @@
         <!-- Right Side: Upload Box -->
         <section class="hero-right">
             <div class="upload-card" id="drop-zone">
-                <!-- Direct file input (Hidden) -->
                 <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="processImage(this.files[0])">
                 
                 <div class="upload-content" id="upload-prompt">
-                    <!-- Button clicks input file directly -->
                     <button type="button" class="btn-upload" onclick="document.getElementById('file-input').click()">
                         Upload Image
                     </button>
@@ -396,8 +591,78 @@
 
     </main>
 
+    <!-- Ad placeholder between Tool and Content -->
+    <div class="adsense-placeholder" id="middle-ad">
+        <i class="fa-solid fa-rectangle-ad" style="margin-right: 8px;"></i> Advertisement (AdSense Banner Code Will Go Here)
+    </div>
+
+    <!-- SEO Content Section (Essential for getting AdSense approved) -->
+    <section class="info-section">
+        <div class="info-grid">
+            <div class="info-box">
+                <h2>How to Remove Background from Image Online?</h2>
+                <p>Removing background from images used to be a tedious task requiring hours of manual tracing on expensive graphic design software like Photoshop. Now, our free AI background remover makes it effortless. In less than five seconds, you can get a transparent PNG file ready to be used in any design.</p>
+                <p>Simply click the "Upload Image" button, choose your photo, and let our AI algorithm automatically extract the subject from its background with incredible accuracy.</p>
+            </div>
+            <div class="info-box">
+                <h2>Best Tool for E-commerce & Designers</h2>
+                <p>Whether you are selling products online on Shopify, Amazon, or Daraz, clean product photos with transparent or white backgrounds are crucial to driving sales. Our background removal tool delivers professional, clean cut-outs, preserving delicate details such as hair, fur, and thin edges.</p>
+                <p>We do not compromise on image quality. Download high-resolution PNGs instantly for free.</p>
+            </div>
+        </div>
+
+        <!-- FAQs Section (Boosts Search Rankings) -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Is this background removal tool completely free?</h3>
+                <p>Yes! Our background remover is 100% free with no registration or hidden subscriptions required. You can process your images and download transparent files instantly.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Does it support bulk or mobile image uploads?</h3>
+                <p>Absolutely. Our website is fully mobile-responsive. You can seamlessly use it on your Android, iOS device, or computer browser anytime, anywhere.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Are my uploaded images secure?</h3>
+                <p>Yes, your privacy is our top priority. We do not store your images on our servers. All uploaded images are processed securely and deleted automatically once the background is removed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Modal (AdSense Requirement) -->
+    <div id="privacy-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="hideModal('privacy-modal')">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is very important to us. This privacy statement explains how we handle and protect your personal data when you use our Free AI Background Remover.</p>
+            <h3>1. Information We Collect</h3>
+            <p>We do not collect or store any personal data or images. When you upload an image to remove its background, it is processed securely via real-time APIs and is immediately deleted from our system once processing is complete.</p>
+            <h3>2. Cookies & Advertising</h3>
+            <p>We may use cookies to serve ads through Google AdSense. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to our website. You may opt out of personalized advertising by visiting Google Ads Settings.</p>
+            <h3>3. Data Security</h3>
+            <p>We utilize industry-standard security protocols to ensure that your data is safe during transfer. Your images are secure and will never be shared with third parties.</p>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal (AdSense Requirement) -->
+    <div id="contact-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="hideModal('contact-modal')">&times;</span>
+            <h2>Contact Us</h2>
+            <p>Have any questions, bug reports, or partnership opportunities? We are here to help!</p>
+            <p>Feel free to reach out to our team via email, and we will get back to you within 24 to 48 hours.</p>
+            <br>
+            <p><strong>Email Support:</strong> support@yourdomain.com</p>
+            <p>Thank you for using our AI Background Remover tool!</p>
+        </div>
+    </div>
+
     <!-- Footer Section -->
     <footer class="site-footer">
+        <div class="footer-links">
+            <a onclick="showModal('privacy-modal')">Privacy Policy</a> | 
+            <a onclick="showModal('contact-modal')">Contact Us</a>
+        </div>
         Designed & built with <span class="heart-icon">♥</span> by <strong>SHAHZAIB ARSHAD KHAGGA</strong>
     </footer>
 
@@ -412,7 +677,15 @@
         const outputImage = document.getElementById('output-image');
         const downloadBtn = document.getElementById('download-btn');
 
-        // Drag and Drop (Support)
+        // Modal triggers
+        function showModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function hideModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Drag and Drop support
         if (dropZone) {
             dropZone.addEventListener('dragover', (e) => {
                 e.preventDefault();
@@ -445,7 +718,7 @@
             formData.append('image_file', file);
             formData.append('size', 'auto');
 
-            // Send to remove.bg API
+            // API Call
             fetch('https://api.remove.bg/v1.0/removebg', {
                 method: 'POST',
                 headers: {
@@ -460,7 +733,7 @@
                 return response.blob();
             })
             .then(blob => {
-                // Generate download link from result
+                // Generate download link
                 const imageUrl = URL.createObjectURL(blob);
                 
                 loader.classList.add('hidden');
