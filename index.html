@@ -735,16 +735,20 @@
                 }
                 return response.blob();
             })
-            .then(blob => {
-                // Generate download link
-                const imageUrl = URL.createObjectURL(blob);
+.then(blob => {
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = function() {
+                const base64data = reader.result;
                 
                 loader.classList.add('hidden');
                 resultArea.classList.remove('hidden');
-                
-                outputImage.src = imageUrl;
-                downloadBtn.href = imageUrl;
-            })
+
+                outputImage.src = base64data;
+                downloadBtn.href = base64data;
+                downloadBtn.download = "background-removed.png";
+            }
+        })
             .catch(error => {
                 alert("Error: " + error.message);
                 resetUpload();
