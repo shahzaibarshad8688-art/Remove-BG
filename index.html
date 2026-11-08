@@ -3,16 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free AI Background Remover, Image Compressor & Upscaler | 100% Free Online</title>
-<meta name="description" content="Remove image background, compress images and upscale photos 2x-4x online. Free, fast, no signup. Download transparent PNG, small JPG/WebP and HD images.">
-<meta name="keywords" content="remove bg, background remover, image compressor, compress image online, image upscaler, upscale image, enlarge photo, transparent png maker">
+<title>ClearCut - Free AI Background Remover, Image Compressor & Upscaler</title>
+<meta name="description" content="ClearCut removes image backgrounds, compresses images and upscales photos 2x-4x right in your browser. Free, private, no signup. Download transparent PNG, small JPG/WebP and HD images.">
+<meta name="keywords" content="background remover, transparent png maker, image compressor, compress image online, image upscaler, upscale image, enlarge photo">
 <meta name="author" content="Shahzaib Arshad Khagga">
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="S7bvF1tdw86BNo3_nT30bHD-mcrvtnCX1cotxB1m9VI" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
-<script async="async" data-cfasync="false" src="https://pl30386336.effectivecpmnetwork.com/3f8c4f2ec7ed959639714a87b7970ca9/invoke.js"></script>
-<div id="container-3f8c4f2ec7ed959639714a87b7970ca9"></div>
 <style>
 :root{--pb:#0066f5;--pbh:#0052c7;--td:#1e293b;--tg:#64748b;--bg:#f8fafc;--w:#fff;--g:#10b981}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
@@ -93,7 +90,7 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
 </head>
 <body>
 <header class="navbar">
-  <div class="logo"><i class="fa-solid fa-layer-group"></i><span>remove<strong>bg</strong></span></div>
+  <div class="logo"><i class="fa-solid fa-scissors"></i><span>Clear<strong>Cut</strong></span></div>
   <nav class="nav-links">
     <a onclick="switchTool('remove')">Remove BG</a>
     <a onclick="switchTool('compress')">Compressor</a>
@@ -101,10 +98,8 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
     <a onclick="showModal('privacy-modal')">Privacy Policy</a>
     <a onclick="showModal('contact-modal')">Contact Us</a>
   </nav>
-  <div class="auth-buttons"><a href="#" class="btn-login">Log in</a><a href="#" class="btn-signup">Sign up</a></div>
+  <div class="auth-buttons"><a class="btn-signup" onclick="switchTool('remove')" style="cursor:pointer">Try it free</a></div>
 </header>
-
-<div class="adsense-placeholder" id="top-ad"><i class="fa-solid fa-rectangle-ad" style="margin-right:8px"></i> Advertisement (AdSense Banner Code Will Go Here)</div>
 
 <main class="hero-container">
   <section class="hero-left">
@@ -127,9 +122,9 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
         <div class="upload-content" id="upload-prompt">
           <button type="button" class="btn-upload" onclick="$('file-input').click()">Upload Image</button>
           <p class="drag-text">or drop a file,</p>
-          <p class="sub-text">paste image or <a href="#" style="color:var(--pb);text-decoration:none">URL</a></p>
+          <p class="sub-text">or paste an image (Ctrl+V) &mdash; processed in your browser</p>
         </div>
-        <div class="loader-container hidden" id="loader"><div class="spinner"></div><p>Removing background...</p></div>
+        <div class="loader-container hidden" id="loader"><div class="spinner"></div><p id="loader-text">Removing background...</p><p class="sub-text">First run downloads the AI model once, then it is fast.</p></div>
         <div class="result-container hidden" id="result-area">
           <img id="output-image" src="" alt="Result">
           <a id="download-btn" class="btn-download" download="no-bg-image.png">Download Image</a>
@@ -182,13 +177,12 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
   </section>
 </main>
 
-<div class="adsense-placeholder" id="middle-ad"><i class="fa-solid fa-rectangle-ad" style="margin-right:8px"></i> Advertisement (AdSense Banner Code Will Go Here)</div>
 
 <section class="info-section">
   <div class="info-grid">
     <div class="info-box">
       <h2>How to Remove Background from Image Online?</h2>
-      <p>Our free AI background remover gives you a transparent PNG in under five seconds. Click "Upload Image", choose your photo and the AI extracts the subject automatically with clean edges around hair and fine details.</p>
+      <p>ClearCut's free AI background remover gives you a transparent PNG in seconds. Click "Upload Image", choose your photo and the AI extracts the subject automatically. The AI model runs inside your browser, so your photo is never uploaded anywhere.</p>
       <p>Perfect for e-commerce sellers on Shopify, Amazon and Daraz who need clean product photos.</p>
     </div>
     <div class="info-box">
@@ -201,7 +195,7 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><h3>Is this tool completely free?</h3><p>Yes! Background remover, image compressor and image upscaler are 100% free with no registration or hidden subscriptions.</p></div>
     <div class="faq-item"><h3>Does it work on mobile?</h3><p>Absolutely. The website is fully responsive and works on Android, iOS and desktop browsers.</p></div>
-    <div class="faq-item"><h3>Are my uploaded images secure?</h3><p>Yes. Compression and upscaling happen locally in your browser. For background removal, images are processed securely and are not stored on our servers.</p></div>
+    <div class="faq-item"><h3>Are my uploaded images secure?</h3><p>Yes. All three tools &mdash; background removal, compression and upscaling &mdash; run locally in your browser. Your images never leave your device.</p></div>
     <div class="faq-item"><h3>Which format should I choose for compression?</h3><p>WebP gives the smallest files at the same quality. Choose JPG when you need maximum compatibility.</p></div>
   </div>
 </section>
@@ -211,9 +205,9 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
   <h2>Privacy Policy</h2>
   <p>Your privacy is very important to us. This statement explains how we handle your data when you use our Free AI Background Remover, Image Compressor and Image Upscaler.</p>
   <h3>1. Information We Collect</h3>
-  <p>We do not collect or store personal data or images. Compression and upscaling run locally in your browser. Background removal images are processed via real-time APIs and are not retained by us.</p>
-  <h3>2. Cookies &amp; Advertising</h3>
-  <p>We may use cookies to serve ads through Google AdSense. Third-party vendors, including Google, use cookies to serve ads based on your prior visits. You may opt out of personalized advertising via Google Ads Settings.</p>
+  <p>We do not collect or store personal data or images. Background removal, compression and upscaling all run locally in your browser; your images are never uploaded to a server.</p>
+  <h3>2. Third-party resources</h3>
+  <p>The page loads fonts, icons and the open-source AI model from public CDNs. These providers may see standard request data such as your IP address, but never your images.</p>
   <h3>3. Data Security</h3>
   <p>We use industry-standard security protocols. Your images will never be shared with third parties.</p>
 </div></div>
@@ -222,8 +216,8 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
   <span class="close-modal" onclick="hideModal('contact-modal')">&times;</span>
   <h2>Contact Us</h2>
   <p>Have any questions, bug reports, or partnership opportunities? We are here to help!</p>
-  <p>Reach out via email and we will get back to you within 24 to 48 hours.</p>
-  <p><strong>Email Support:</strong> support@yourdomain.com</p>
+  <p>Reach out on GitHub and we will get back to you within 24 to 48 hours.</p>
+  <p><strong>GitHub:</strong> <a href="https://github.com/shahzaibarshad8688-art" target="_blank" rel="noopener" style="color:var(--pb)">github.com/shahzaibarshad8688-art</a></p>
   <p>Thank you for using our image tools!</p>
 </div></div>
 
@@ -234,7 +228,9 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
 
 <script>
 const $ = id => document.getElementById(id);
-const API_KEY = "z1KnVYRyszYBTmbuCDFmnEUN";
+// Background removal runs fully in the browser (no API key, no uploads).
+const BG_LIB = 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm';
+let bgLib = null;
 
 /* ---------- Modals ---------- */
 function showModal(id){ $(id).classList.remove('hidden'); }
@@ -281,27 +277,33 @@ function setStats(el, items){ el.innerHTML = items.map(s => '<b' + (s[1] ? ' cla
 const uploadPrompt = $('upload-prompt'), loader = $('loader'), resultArea = $('result-area'),
       outputImage = $('output-image'), downloadBtn = $('download-btn');
 
-function processImage(file){
+let rUrl = null;
+async function processImage(file){
   if (!file) return;
+  if (!file.type.startsWith('image/')) return alert('Please select an image file.');
   uploadPrompt.classList.add('hidden');
   loader.classList.remove('hidden');
-  const formData = new FormData();
-  formData.append('image_file', file);
-  formData.append('size', 'auto');
-  fetch('https://api.remove.bg/v1.0/removebg', { method:'POST', headers:{'X-Api-Key': API_KEY}, body: formData })
-  .then(r => { if (!r.ok) throw new Error('API limit reached or network issue.'); return r.blob(); })
-  .then(blob => {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
-    reader.onloadend = () => {
-      loader.classList.add('hidden');
-      resultArea.classList.remove('hidden');
-      outputImage.src = reader.result;
-      downloadBtn.href = reader.result;
-      downloadBtn.download = "background-removed.png";
-    };
-  })
-  .catch(err => { alert("Error: " + err.message); resetUpload(); });
+  const status = $('loader-text');
+  try {
+    status.textContent = 'Loading AI model...';
+    if (!bgLib) bgLib = await import(BG_LIB);
+    const blob = await bgLib.removeBackground(file, {
+      progress: (key, cur, total) => {
+        if (key.startsWith('fetch') && total) status.textContent = 'Loading AI model... ' + Math.round(cur / total * 100) + '%';
+        else if (key.startsWith('compute')) status.textContent = 'Removing background...';
+      }
+    });
+    if (rUrl) URL.revokeObjectURL(rUrl);
+    rUrl = URL.createObjectURL(blob);
+    loader.classList.add('hidden');
+    resultArea.classList.remove('hidden');
+    outputImage.src = rUrl;
+    downloadBtn.href = rUrl;
+    downloadBtn.download = 'background-removed.png';
+  } catch(err){
+    alert('Error: ' + (err && err.message ? err.message : 'Could not process this image.'));
+    resetUpload();
+  }
 }
 function resetUpload(){
   $('file-input').value = '';
@@ -310,6 +312,16 @@ function resetUpload(){
   uploadPrompt.classList.remove('hidden');
 }
 bindDrop('drop-remove', 'file-input', processImage);
+
+/* Paste an image (Ctrl+V) into whichever tool is open */
+document.addEventListener('paste', e => {
+  const item = [...(e.clipboardData ? e.clipboardData.items : [])].find(i => i.type.startsWith('image/'));
+  if (!item) return;
+  const file = item.getAsFile(), tool = document.querySelector('.tab.active').dataset.tool;
+  if (tool === 'remove') processImage(file);
+  else if (tool === 'compress') startCompress(file);
+  else startUpscale(file);
+});
 
 /* ---------- Tool 2: Compressor ---------- */
 let cImg = null, cFile = null, cUrl = null;
@@ -417,6 +429,5 @@ function resetTool(p){
   if (p === 'c') cImg = null; else uImg = null;
 }
 </script>
-<script src="https://pl30443809.effectivecpmnetwork.com/d7/09/f1/d709f1cd1c51f075f9bf6895ebf88c21.js"></script>
 </body>
 </html>
