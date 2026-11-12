@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ClearCut - Free AI Background Remover, Image Compressor & Upscaler</title>
-<meta name="description" content="ClearCut removes image backgrounds, compresses images and upscales photos 2x-4x right in your browser. Free, private, no signup. Download transparent PNG, small JPG/WebP and HD images.">
+<meta name="description" content="ClearCut removes image backgrounds, compresses images and upscales photos 2x-4x right in your browser. Free and private &mdash; create a free account to download transparent PNG, small JPG/WebP and HD images.">
 <meta name="keywords" content="background remover, transparent png maker, image compressor, compress image online, image upscaler, upscale image, enlarge photo">
 <meta name="author" content="Shahzaib Arshad Khagga">
 <meta name="robots" content="index, follow">
@@ -20,8 +20,36 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
 .nav-links a{text-decoration:none;color:var(--td);margin-right:25px;font-weight:500;transition:color .2s;cursor:pointer}
 .nav-links a:hover{color:var(--pb)}
 .auth-buttons{display:flex;align-items:center;gap:15px}
-.btn-login{text-decoration:none;color:var(--td);font-weight:500}
-.btn-signup{text-decoration:none;background:var(--td);color:var(--w);padding:10px 20px;border-radius:20px;font-weight:500}
+.btn-login{text-decoration:none;color:var(--td);font-weight:500;background:none;border:none;font-size:15px;cursor:pointer}
+.btn-login:hover{color:var(--pb)}
+.btn-signup{text-decoration:none;background:var(--td);color:var(--w);padding:10px 20px;border-radius:20px;font-weight:500;border:none;font-size:15px;cursor:pointer}
+.btn-signup:hover{background:var(--pb)}
+.user-box{display:flex;align-items:center;gap:10px}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:var(--pb) center/cover no-repeat;color:var(--w);display:flex;align-items:center;justify-content:center;font-weight:700}
+.user-name{font-weight:600;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn-logout{background:none;border:1px solid #cbd5e1;color:var(--td);padding:7px 14px;border-radius:16px;cursor:pointer;font-weight:500}
+.btn-logout:hover{border-color:#ef4444;color:#ef4444}
+.auth-box{max-width:420px;padding:36px 32px}
+.auth-box h2{text-align:center;border:none;margin-bottom:6px}
+.auth-sub{text-align:center;color:var(--tg);font-size:14px;margin-bottom:18px}
+.auth-note{background:#eef4ff;color:var(--pb);padding:10px 14px;border-radius:10px;font-size:14px;margin-bottom:16px;text-align:center}
+.btn-google{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border:1px solid #cbd5e1;background:var(--w);border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;color:var(--td)}
+.btn-google:hover{background:var(--bg)}
+.btn-google i{color:#ea4335}
+.auth-or{display:flex;align-items:center;gap:10px;color:#94a3b8;font-size:13px;margin:16px 0}
+.auth-or:before,.auth-or:after{content:"";flex:1;height:1px;background:#e2e8f0}
+.auth-form{display:grid;gap:12px}
+.auth-form input{width:100%;padding:12px 14px;border:1px solid #cbd5e1;border-radius:12px;font-size:15px;outline:none}
+.auth-form input:focus{border-color:var(--pb);box-shadow:0 0 0 3px rgba(0,102,245,.12)}
+.auth-submit{background:var(--pb);color:var(--w);border:none;padding:13px;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer}
+.auth-submit:hover{background:var(--pbh)}
+.auth-submit:disabled,.btn-google:disabled{opacity:.6;cursor:wait}
+.auth-forgot{background:none;border:none;color:var(--pb);font-size:13px;cursor:pointer;justify-self:end}
+.auth-msg{font-size:14px;text-align:center;min-height:0}
+.auth-msg.err{color:#dc2626;margin-top:12px}
+.auth-msg.ok{color:#047857;margin-top:12px}
+.auth-switch{text-align:center;font-size:14px;color:var(--tg);margin-top:16px}
+.auth-switch a{color:var(--pb);font-weight:600;cursor:pointer}
 .hero-container{display:flex;align-items:center;justify-content:space-between;padding:50px 10%;gap:50px}
 .hero-left{flex:1;display:flex;flex-direction:column;align-items:flex-start}
 .hero-image-wrapper{width:180px;height:180px;border-radius:50%;overflow:hidden;margin-bottom:20px;border:5px solid var(--w);box-shadow:0 10px 25px rgba(0,0,0,.05)}
@@ -81,7 +109,9 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
 @keyframes beat{to{transform:scale(1.15)}}
 .hidden{display:none!important}
 @media(max-width:768px){
-.navbar{padding:15px 5%}.nav-links,.auth-buttons{display:none}
+.navbar{padding:15px 5%}.nav-links{display:none}
+.auth-buttons{gap:10px}.btn-signup{padding:8px 14px;font-size:14px}.btn-login{font-size:14px}
+.user-name{display:none}.auth-box{padding:30px 20px}
 .hero-container{flex-direction:column;padding:40px 5%;text-align:center;gap:30px}
 .hero-left{align-items:center}.hero-heading{font-size:32px}
 .info-grid{grid-template-columns:1fr}.tab{font-size:12px}
@@ -98,7 +128,17 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
     <a onclick="showModal('privacy-modal')">Privacy Policy</a>
     <a onclick="showModal('contact-modal')">Contact Us</a>
   </nav>
-  <div class="auth-buttons"><a class="btn-signup" onclick="switchTool('remove')" style="cursor:pointer">Try it free</a></div>
+  <div class="auth-buttons">
+    <div id="auth-guest" class="auth-buttons">
+      <button type="button" class="btn-login" onclick="openAuth('login')">Log In</button>
+      <button type="button" class="btn-signup" onclick="openAuth('signup')">Sign Up</button>
+    </div>
+    <div id="auth-user" class="user-box hidden">
+      <div class="user-avatar" id="user-avatar"></div>
+      <span class="user-name" id="user-name"></span>
+      <button type="button" class="btn-logout" id="btn-logout">Log Out</button>
+    </div>
+  </div>
 </header>
 
 <main class="hero-container">
@@ -193,7 +233,7 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
   </div>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
-    <div class="faq-item"><h3>Is this tool completely free?</h3><p>Yes! Background remover, image compressor and image upscaler are 100% free with no registration or hidden subscriptions.</p></div>
+    <div class="faq-item"><h3>Is this tool completely free?</h3><p>Yes! Background remover, image compressor and image upscaler are 100% free with no hidden subscriptions. You can try every tool right away; a free account (email or Google) is needed only to download your result.</p></div>
     <div class="faq-item"><h3>Does it work on mobile?</h3><p>Absolutely. The website is fully responsive and works on Android, iOS and desktop browsers.</p></div>
     <div class="faq-item"><h3>Are my uploaded images secure?</h3><p>Yes. All three tools &mdash; background removal, compression and upscaling &mdash; run locally in your browser. Your images never leave your device.</p></div>
     <div class="faq-item"><h3>Which format should I choose for compression?</h3><p>WebP gives the smallest files at the same quality. Choose JPG when you need maximum compatibility.</p></div>
@@ -221,6 +261,24 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
   <p>Thank you for using our image tools!</p>
 </div></div>
 
+<div id="auth-modal" class="modal hidden"><div class="modal-content auth-box">
+  <span class="close-modal" onclick="closeAuth()">&times;</span>
+  <h2 id="auth-title">Welcome back</h2>
+  <p class="auth-sub" id="auth-sub">Log in to download your images</p>
+  <div class="auth-note hidden" id="auth-note"></div>
+  <button type="button" class="btn-google" id="auth-google"><i class="fa-brands fa-google"></i> Continue with Google</button>
+  <div class="auth-or">or</div>
+  <form class="auth-form" id="auth-form" novalidate>
+    <input type="text" id="auth-name" placeholder="Full name" autocomplete="name" class="hidden">
+    <input type="email" id="auth-email" placeholder="Email address" autocomplete="email" required>
+    <input type="password" id="auth-pass" placeholder="Password (min 6 characters)" autocomplete="current-password" required>
+    <button type="button" class="auth-forgot" id="auth-forgot">Forgot password?</button>
+    <button type="submit" class="auth-submit" id="auth-submit">Log In</button>
+  </form>
+  <p class="auth-msg" id="auth-msg"></p>
+  <p class="auth-switch" id="auth-switch"></p>
+</div></div>
+
 <footer class="site-footer">
   <div class="footer-links"><a onclick="showModal('privacy-modal')">Privacy Policy</a> | <a onclick="showModal('contact-modal')">Contact Us</a></div>
   Designed &amp; built with <span class="heart-icon">♥</span> by <strong>SHAHZAIB ARSHAD KHAGGA</strong>
@@ -235,6 +293,44 @@ let bgLib = null;
 /* ---------- Modals ---------- */
 function showModal(id){ $(id).classList.remove('hidden'); }
 function hideModal(id){ $(id).classList.add('hidden'); }
+
+/* ---------- Auth (Firebase logic lives in auth.js) ---------- */
+window.ccAuth = { configured: false, user: null };
+window.ccAuthMode = 'login';
+let pendingAction = null;
+function setAuthMode(mode){
+  window.ccAuthMode = mode;
+  const s = mode === 'signup';
+  $('auth-title').textContent = s ? 'Create your account' : 'Welcome back';
+  $('auth-sub').textContent = s ? 'Sign up free to download your images' : 'Log in to download your images';
+  $('auth-name').classList.toggle('hidden', !s);
+  $('auth-forgot').classList.toggle('hidden', s);
+  $('auth-pass').autocomplete = s ? 'new-password' : 'current-password';
+  $('auth-submit').textContent = s ? 'Create Account' : 'Log In';
+  $('auth-switch').innerHTML = s
+    ? 'Already have an account? <a onclick="setAuthMode(\'login\')">Log in</a>'
+    : 'Don\'t have an account? <a onclick="setAuthMode(\'signup\')">Sign up free</a>';
+  const m = $('auth-msg'); m.textContent = ''; m.className = 'auth-msg';
+}
+function openAuth(mode, note){
+  setAuthMode(mode || 'login');
+  $('auth-note').textContent = note || '';
+  $('auth-note').classList.toggle('hidden', !note);
+  showModal('auth-modal');
+  setTimeout(() => $(window.ccAuthMode === 'signup' ? 'auth-name' : 'auth-email').focus(), 50);
+}
+function closeAuth(){ hideModal('auth-modal'); }
+function hasPendingAction(){ return !!pendingAction; }
+function runPendingAction(){ const a = pendingAction; pendingAction = null; if (a) a(); }
+/* Run `action` only for logged-in users. If Firebase is not configured yet, downloads stay open. */
+function requireLogin(action){
+  if (!window.ccAuth.configured || window.ccAuth.user) return action();
+  pendingAction = action;
+  openAuth('login', 'Please log in or sign up free to download your image.');
+}
+function downloadUrl(url, name){ const a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden')); });
+document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.add('hidden'); }));
 
 /* ---------- Tabs ---------- */
 const HERO = {
@@ -312,6 +408,12 @@ function resetUpload(){
   uploadPrompt.classList.remove('hidden');
 }
 bindDrop('drop-remove', 'file-input', processImage);
+downloadBtn.addEventListener('click', e => {
+  if (!window.ccAuth.configured || window.ccAuth.user) return; // normal link download
+  e.preventDefault();
+  const url = downloadBtn.href, name = downloadBtn.download;
+  requireLogin(() => downloadUrl(url, name));
+});
 
 /* Paste an image (Ctrl+V) into whichever tool is open */
 document.addEventListener('paste', e => {
@@ -351,7 +453,7 @@ async function runCompress(){
   const saved = Math.max(0, Math.round((1 - blob.size / cFile.size) * 100));
   setStats($('c-stats'), [['Original: ' + fmtSize(cFile.size)], ['New: ' + fmtSize(blob.size)], ['Saved ' + saved + '%', true], [w + ' × ' + h]]);
   const ext = type === 'image/webp' ? 'webp' : 'jpg';
-  $('c-dl').onclick = () => { const a = document.createElement('a'); a.href = cUrl; a.download = 'compressed-image.' + ext; a.click(); };
+  $('c-dl').onclick = () => { const url = cUrl; requireLogin(() => downloadUrl(url, 'compressed-image.' + ext)); };
 }
 $('c-q').addEventListener('input', () => { $('c-qv').textContent = $('c-q').value + '%'; });
 $('c-q').addEventListener('change', runCompress);
@@ -408,7 +510,7 @@ async function runUpscale(){
     uUrl = URL.createObjectURL(blob);
     $('u-img').src = uUrl;
     setStats($('u-stats'), [[w0 + ' × ' + h0], ['→ ' + cw + ' × ' + ch, true], [s + 'x'], [fmtSize(blob.size)]]);
-    $('u-dl').onclick = () => { const a = document.createElement('a'); a.href = uUrl; a.download = 'upscaled-' + s + 'x.png'; a.click(); };
+    $('u-dl').onclick = () => { const url = uUrl; requireLogin(() => downloadUrl(url, 'upscaled-' + s + 'x.png')); };
     if (s < parseInt($('u-s').value)) $('u-s').value = s;
     $('u-loader').classList.add('hidden');
     $('u-result').classList.remove('hidden');
@@ -429,5 +531,6 @@ function resetTool(p){
   if (p === 'c') cImg = null; else uImg = null;
 }
 </script>
+<script type="module" src="auth.js"></script>
 </body>
 </html>
