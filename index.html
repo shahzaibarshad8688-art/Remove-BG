@@ -122,7 +122,7 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
         <div class="upload-content" id="upload-prompt">
           <button type="button" class="btn-upload" onclick="$('file-input').click()">Upload Image</button>
           <p class="drag-text">or drop a file,</p>
-          <p class="sub-text">or paste an image (Ctrl+V) &mdash; processed in your browser</p>
+          <p class="sub-text">or paste an image (Ctrl+V)</p>
         </div>
         <div class="loader-container hidden" id="loader"><div class="spinner"></div><p id="loader-text">Removing background...</p><p class="sub-text">First run downloads the AI model once, then it is fast.</p></div>
         <div class="result-container hidden" id="result-area">
@@ -182,7 +182,7 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
   <div class="info-grid">
     <div class="info-box">
       <h2>How to Remove Background from Image Online?</h2>
-      <p>ClearCut's free AI background remover gives you a transparent PNG in seconds. Click "Upload Image", choose your photo and the AI extracts the subject automatically. The AI model runs inside your browser, so your photo is never uploaded anywhere.</p>
+      <p>ClearCut's free AI background remover gives you a transparent PNG in seconds. Click "Upload Image", choose your photo and the AI extracts the subject automatically. Your photo is processed securely by the remove.bg AI service and is not stored by us.</p>
       <p>Perfect for e-commerce sellers on Shopify, Amazon and Daraz who need clean product photos.</p>
     </div>
     <div class="info-box">
@@ -195,7 +195,7 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><h3>Is this tool completely free?</h3><p>Yes! Background remover, image compressor and image upscaler are 100% free with no registration or hidden subscriptions.</p></div>
     <div class="faq-item"><h3>Does it work on mobile?</h3><p>Absolutely. The website is fully responsive and works on Android, iOS and desktop browsers.</p></div>
-    <div class="faq-item"><h3>Are my uploaded images secure?</h3><p>Yes. All three tools &mdash; background removal, compression and upscaling &mdash; run locally in your browser. Your images never leave your device.</p></div>
+    <div class="faq-item"><h3>Are my uploaded images secure?</h3><p>Yes. Compression and upscaling run locally in your browser, so those images never leave your device. Background removal is processed by the remove.bg AI service; we do not store your images.</p></div>
     <div class="faq-item"><h3>Which format should I choose for compression?</h3><p>WebP gives the smallest files at the same quality. Choose JPG when you need maximum compatibility.</p></div>
   </div>
 </section>
@@ -205,7 +205,7 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
   <h2>Privacy Policy</h2>
   <p>Your privacy is very important to us. This statement explains how we handle your data when you use our Free AI Background Remover, Image Compressor and Image Upscaler.</p>
   <h3>1. Information We Collect</h3>
-  <p>We do not collect or store personal data or images. Background removal, compression and upscaling all run locally in your browser; your images are never uploaded to a server.</p>
+  <p>We do not collect or store personal data or images. Compression and upscaling run locally in your browser. For background removal, your image is sent to the remove.bg API (by Kaleido AI) for processing and is not retained by us; if that service is unavailable, it is processed locally in your browser instead.</p>
   <h3>2. Third-party resources</h3>
   <p>The page loads fonts, icons and the open-source AI model from public CDNs. These providers may see standard request data such as your IP address, but never your images.</p>
   <h3>3. Data Security</h3>
@@ -228,9 +228,11 @@ body{background:var(--bg);color:var(--td);min-height:100vh;display:flex;flex-dir
 
 <script>
 const $ = id => document.getElementById(id);
-// Background removal runs fully in the browser (no API key, no uploads).
+// Background removal: remove.bg API first (fast). If the API fails or its
+// monthly limit is used up, fall back to the in-browser AI model.
+const REMOVEBG_KEY = 'z1KnVYRyszYBTmbuCDFmnEUN';
 const BG_LIB = 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm';
-let bgLib = null;
+let bgLib = null, apiOff = false;
 
 /* ---------- Modals ---------- */
 function showModal(id){ $(id).classList.remove('hidden'); }
@@ -278,6 +280,21 @@ const uploadPrompt = $('upload-prompt'), loader = $('loader'), resultArea = $('r
       outputImage = $('output-image'), downloadBtn = $('download-btn');
 
 let rUrl = null;
+async function removeViaApi(file){
+  const fd = new FormData();
+  fd.append('image_file', file);
+  fd.append('size', 'auto');
+  const ctrl = new AbortController(), timer = setTimeout(() => ctrl.abort(), 30000);
+  try {
+    const r = await fetch('https://api.remove.bg/v1.0/removebg', { method: 'POST', headers: { 'X-Api-Key': REMOVEBG_KEY }, body: fd, signal: ctrl.signal });
+    if (!r.ok){
+      // 402 = no credits left, 403 = bad key, 429 = rate limit: stop trying the API this visit
+      if ([402, 403, 429].includes(r.status)) apiOff = true;
+      throw new Error('HTTP ' + r.status);
+    }
+    return await r.blob();
+  } finally { clearTimeout(timer); }
+}
 async function processImage(file){
   if (!file) return;
   if (!file.type.startsWith('image/')) return alert('Please select an image file.');
@@ -285,14 +302,22 @@ async function processImage(file){
   loader.classList.remove('hidden');
   const status = $('loader-text');
   try {
-    status.textContent = 'Loading AI model...';
-    if (!bgLib) bgLib = await import(BG_LIB);
-    const blob = await bgLib.removeBackground(file, {
-      progress: (key, cur, total) => {
-        if (key.startsWith('fetch') && total) status.textContent = 'Loading AI model... ' + Math.round(cur / total * 100) + '%';
-        else if (key.startsWith('compute')) status.textContent = 'Removing background...';
-      }
-    });
+    let blob = null;
+    if (!apiOff){
+      status.textContent = 'Removing background...';
+      try { blob = await removeViaApi(file); }
+      catch(e){ console.warn('[ClearCut] remove.bg API failed, using in-browser model:', e.message); }
+    }
+    if (!blob){
+      status.textContent = 'Loading AI model...';
+      if (!bgLib) bgLib = await import(BG_LIB);
+      blob = await bgLib.removeBackground(file, {
+        progress: (key, cur, total) => {
+          if (key.startsWith('fetch') && total) status.textContent = 'Loading AI model... ' + Math.round(cur / total * 100) + '%';
+          else if (key.startsWith('compute')) status.textContent = 'Removing background...';
+        }
+      });
+    }
     if (rUrl) URL.revokeObjectURL(rUrl);
     rUrl = URL.createObjectURL(blob);
     loader.classList.add('hidden');
